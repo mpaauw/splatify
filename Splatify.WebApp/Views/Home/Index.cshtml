@@ -1,0 +1,146 @@
+﻿@{
+    ViewBag.Title = "";
+}
+
+@section jsCode {
+    angular.bootstrap(document.getElementById("splatify"), ['splatify']);
+}
+
+<div data-ng-app="splatify" id="splatify" data-ng-controller="splatifyViewModel">
+    <div>
+        <h1 style="font-size:48px">Splatify</h1>
+    </div>
+    <div>
+        <h3>find new artists, creatively</h3>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-lg-6">
+            <button id="LoginButton" class="btn btn-primary" type="button" >Log In to Spotify</button>
+            <button id="loggedInButton" class="btn btn-primary" type="button" disabled="disabled">Spotify account authorized</button>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-6">
+            <div id="artistInput" class="input-group">
+                <span class="input-group-btn">
+                    <button id="searchArtistBtn" class="btn btn-success" type="button" ng-click="submitArtist()">Search</button>&nbsp;
+                </span>
+                <input id="artistTextbox" type="text" class="form-control" ng-model="splatifyService.artistId" placeholder="search for an artist..." />
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="LoginModal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Log into your account</h2>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h4>You will be redirected and asked to log into your Spotify account.</h4>
+                    </div>
+                    <hr />
+                    <div>
+                        <button class="btn btn-primary" type="button" ng-click="submitLogin()">Confirm</button>&nbsp;
+                        <input type="button" class="btn btn-default" value="Cancel" data-dismiss="modal" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="RelatedArtistsModal" data-keyboard="false" data-backdrop="static" style="width:90%;height:90%">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Your playlist has been added!</h2>
+                </div>
+                <div class="modal-body">
+
+                    <div>
+                        <h4>A playlist consisting of the following artists has been added to your Spotify account:</h4>
+                        <hr />
+                        <div>
+                            <table align="center">
+                                <tr ng-repeat="artist in RelatedArtists" ng-switch on="$index % 5">
+                                    <td ng-switch-when="0">
+                                        <a href="{{RelatedArtists[$index].Url}}" target="_blank" data-toggle="tooltip" title="{{RelatedArtists[$index].Name}}"><img src="{{RelatedArtists[$index].Image}}" class="img-thumbnail img-responsive" style="width:100px;height:100px" /></a>
+                                    </td>
+                                    <span ng-show="RelatedArtists[$index + 1]">
+                                        <td ng-switch-when="0">
+                                            <a href="{{RelatedArtists[$index + 1].Url}}" target="_blank" data-toggle="tooltip" title="{{RelatedArtists[$index + 1].Name}}"><img src="{{RelatedArtists[$index + 1].Image}}" class="img-thumbnail img-responsive" style="width:100px;height:100px" /></a>
+                                        </td>
+                                    </span>
+                                    <span ng-show="RelatedArtists[$index + 2]">
+                                        <td ng-switch-when="0">
+                                            <a href="{{RelatedArtists[$index + 2].Url}}" target="_blank" data-toggle="tooltip" title="{{RelatedArtists[$index + 2].Name}}"><img src="{{RelatedArtists[$index + 2].Image}}" class="img-thumbnail img-responsive" style="width:100px;height:100px" /></a>
+                                        </td>
+                                    </span>
+                                    <span ng-show="RelatedArtists[$index + 3]">
+                                        <td ng-switch-when="0">
+                                            <a href="{{RelatedArtists[$index + 3].Url}}" target="_blank" data-toggle="tooltip" title="{{RelatedArtists[$index + 3].Name}}"><img src="{{RelatedArtists[$index + 3].Image}}" class="img-thumbnail img-responsive" style="width:100px;height:100px" /></a>
+                                        </td>
+                                    </span>
+                                    <span ng-show="RelatedArtists[$index + 4]">
+                                        <td ng-switch-when="0">
+                                            <a href="{{RelatedArtists[$index + 4].Url}}" target="_blank" data-toggle="tooltip" title="{{RelatedArtists[$index + 4].Name}}"><img src="{{RelatedArtists[$index + 4].Image}}" class="img-thumbnail img-responsive" style="width:100px;height:100px" /></a>
+                                        </td>
+                                    </span>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <hr />
+                    <div>
+                        <input id="DismissModalButton" type="button" class="btn btn-default btn-success" value="Thanks" data-dismiss="modal" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="LoadingModal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Please wait...</h2>
+                </div>
+                <div class="modal-body">
+                    <h3>We are building your playlist now.</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts {
+    <script src="~/App/App.js"></script>
+    <script src="~/App/splatify/App.js"></script>
+    <script src="~/App/splatify/ViewModels/RootViewModel.js"></script>
+    <script src="~/App/splatify/ViewModels/splatifyViewModel.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#LoginButton").on('click', function () {
+                $("#LoginModal").modal('show');
+            })
+            $("#searchArtistBtn").on('click', function () {
+                $("#searchArtistBtn").prop("disabled", "disabled");
+                $("#artistTextbox").prop("disabled", "disabled");
+                $("#LoadingModal").modal('show');
+            })
+            $("#DismissModalButton").on('click', function () {
+                $("#searchArtistBtn").prop("disabled", "");
+                $("#artistTextbox").prop("disabled", "");
+                $("#artistTextbox").prop("value", "");
+            })
+        });
+    </script>
+}
+
