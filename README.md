@@ -1,5 +1,5 @@
 # splatify
-A small project that demonstrates the Splatify API, built using AngularJS and C#.
+A small project that demonstrates the Spotify API, built using AngularJS and C#.
 
 Current live build can be found here: http://splatify.apphb.com/
 
