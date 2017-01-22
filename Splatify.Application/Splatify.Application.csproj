@@ -54,7 +54,6 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RunAPI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
