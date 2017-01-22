@@ -12,14 +12,11 @@ namespace Splatify.WebApp
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
             routes.MapRoute(
                 name: "splatify",
                 url: "splatify/{*catchall}",
                 defaults: new { controller = "Home", action = "Splatify" });
-
             routes.MapMvcAttributeRoutes();
-
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

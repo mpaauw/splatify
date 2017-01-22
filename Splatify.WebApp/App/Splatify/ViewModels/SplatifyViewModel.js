@@ -1,5 +1,4 @@
 ﻿splatifyModule.controller("splatifyViewModel", function ($scope, splatifyService, $http, $q, $routeParams, $window, $location, viewModelHelper) {
-
     $scope.viewModelHelper = viewModelHelper;
     $scope.splatifyService = splatifyService;
 
@@ -36,7 +35,6 @@
     $scope.submitArtist = function () {
         viewModelHelper.apiGet('api/artist/' + splatifyService.artistId + "/" + token, null,
             function (result) {
-
                 var flag = 0;
                 angular.forEach(result, function (value) {
                     if (flag == 0) {
@@ -70,6 +68,4 @@
     }
 
     initialize();
-
 });
-

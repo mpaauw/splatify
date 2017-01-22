@@ -33,12 +33,10 @@ namespace Splatify.WebApp.Controllers.API
             List<Artist> relatedArtists = new List<Artist>();
             List<Track> playlistTracks = new List<Track>();           
             Task<MultipleArtists> artists = _artistService.GetRelatedArtists(artistId);
-
             foreach(Artist artist in artists.Result.Artists)
             {
                 relatedArtists.Add(artist);
-            }
-            
+            }          
             foreach (Artist artist in relatedArtists)
             {
                 Task<List<Track>> topTracks = _artistService.GetArtistTopTracks(artist.Id, token);
@@ -46,8 +44,7 @@ namespace Splatify.WebApp.Controllers.API
                 {
                     playlistTracks.Add(topTracks.Result.ElementAt(i));
                 }
-            }
-            
+            }          
             Task<string> created  = _playListService.CreateRelatedArtistsPlaylist(artistId, relatedArtists, token);
             if(created.Result != null || created.Result.Length > 0)
             {

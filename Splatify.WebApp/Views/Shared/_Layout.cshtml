@@ -7,20 +7,16 @@
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
     </head>
-    <body data-ng-app="main">
-        
+    <body data-ng-app="main">       
         <div class="container body-content">
             @RenderBody()
         </div>
-
         @Scripts.Render("~/bundles/angular")
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
-
         <script type="text/javascript">
             window.MyApp = {};
         </script>
-        @*<script src="~/App/Validator.js"></script>*@
         <script src="~/App/App.js"></script>
         @RenderSection("scripts", required: false)
         <script type="text/javascript">

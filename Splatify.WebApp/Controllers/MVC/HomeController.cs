@@ -11,7 +11,6 @@ namespace Splatify.WebApp.Controllers
         public ActionResult Index()
         {
             return View();
-            //test
         }       
     }
 }

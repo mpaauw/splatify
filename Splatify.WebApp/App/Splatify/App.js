@@ -1,13 +1,10 @@
 ﻿var splatifyModule = angular.module('splatify', ['common']);
 
-splatifyModule.config(function ($routeProvider,
-                                $locationProvider) {
+splatifyModule.config(function ($routeProvider, $locationProvider) {
     $routeProvider.when('/artist', {
-        //templateUrl: '/App/Customer/Views/CustomerHomeView.html',
         controller: 'splatifyViewModel'
     });
     $routeProvider.when('/login', {
-        //templateUrl: '/App/Customer/Views/CustomerHomeView.html',
         controller: 'splatifyViewModel'
     });
     $routeProvider.otherwise({
@@ -28,11 +25,8 @@ splatifyModule.factory('splatifyService',
 (function (myApp) {
     var splatifyService = function ($http, $location,
         viewModelHelper) {
-
         var self = this;
-
         self.customerId = 0;
-
         return this;
     };
     myApp.splatifyService = splatifyService;
