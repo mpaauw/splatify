@@ -68,7 +68,6 @@
     <Compile Include="Contracts\CoreService.cs" />
     <Compile Include="Contracts\ICoreService.cs" />
     <Compile Include="PlaylistService.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchService.cs" />
     <Compile Include="UserService.cs" />
