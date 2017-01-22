@@ -9,12 +9,10 @@ namespace Splatify.Core
     public class AppSettingKeys
     {
         public string Name { get; set; }
-
         public AppSettingKeys(string name)
         {
             this.Name = name;
         }
-
         public static readonly AppSettingKeys SpotifyWebAPIBaseURL = new AppSettingKeys("SpotifyWebAPIBaseURL");
         public static readonly AppSettingKeys SpotifyUserID = new AppSettingKeys("SpotifyUserID");
         public static readonly AppSettingKeys EncodedHeader = new AppSettingKeys("EncodedHeader");

@@ -20,6 +20,5 @@ namespace Splatify.Core
 
         [JsonProperty("track")]
         public Track Track { get; set; }
-
     }
 }

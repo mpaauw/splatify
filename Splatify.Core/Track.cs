@@ -62,14 +62,5 @@ namespace Splatify.Core
 
         [JsonProperty("uri")]
         public string Uri { get; set; }
-
-        //public Artist[] artists { get; set; }
-        //public string[] markets { get; set; }
-        //public int duration { get; set; }
-        //public string id { get; set; }
-        //public bool is_playable { get; set; }
-        //public string name { get; set; }
-        //public int popularity { get; set; }
-        //public string uri { get; set; }
     }
 }

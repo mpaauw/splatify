@@ -24,9 +24,6 @@ namespace Splatify.Core
         [JsonProperty("id")]
         public string Id { get; set; }
 
-        //[JsonProperty("images")]
-        //public Image[] Images { get; set; }
-
         [JsonProperty("type")]
         public string Type { get; set; }
 

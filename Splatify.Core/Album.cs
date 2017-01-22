@@ -35,6 +35,5 @@ namespace Splatify.Core
 
         [JsonProperty("uri")]
         public string Uri { get; set; }
-    }
-    
+    } 
 }

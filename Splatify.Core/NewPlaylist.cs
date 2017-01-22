@@ -10,7 +10,6 @@ namespace Splatify.Core
     public class NewPlaylist
     {
         [JsonProperty("name")]
-        public string name { get; set; }
-        
+        public string name { get; set; }       
     }
 }
