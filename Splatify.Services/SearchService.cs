@@ -27,8 +27,7 @@ namespace Splatify.Services
             SearchMultipleArtists results = await this._apiService.GetSpotifyType<SearchMultipleArtists>(_apiService.GetAccessToken(), url);
             return results.Artists.Items[0];
         }
-
-        //Possible types: album, artist, playlist, or track.
+        
         public string BuildSearch(string type, string parameter)
         {
             string query = string.Format(_searchBaseUrl + "?q=");

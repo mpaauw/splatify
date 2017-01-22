@@ -20,8 +20,7 @@ namespace Splatify.Services
         {
             string url = string.Format("https://api.spotify.com/v1/me");
             User user = await this._apiService.GetSpotifyType<User>(token, url);
-
-            return user; //lol
+            return user;
         }
     }
 }

@@ -39,12 +39,10 @@ namespace Splatify.Services
         public async Task<List<Track>> GetArtistTopTracks(string artistId, string token)
         {
             List<Track> trackList = new List<Track>();
-
             string url = string.Format("https://api.spotify.com/v1/artists/{0}/top-tracks", artistId);
             url += "?country=US";
             MultipleTracks topTracks = await this._apiService.GetSpotifyType<MultipleTracks>(token, url);
             trackList = topTracks.Tracks.ToList();
-
             return trackList;
         }
     }

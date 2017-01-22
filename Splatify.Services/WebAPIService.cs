@@ -23,8 +23,6 @@ namespace Splatify.Services
 
     public class WebAPIService
     {
-        //private const string URL = "https://sub.domain.com/objects.json";
-
         private const string IMPLICIT_GRANT_FLOW_REDIRECT = "https://accounts.spotify.com/authorize";
         private string _encodedHeader;
         private string _clientId;
@@ -46,9 +44,7 @@ namespace Splatify.Services
                 SpotifyToken token = new SpotifyToken();
                 string postString = string.Format("grant_type=client_credentials");
                 byte[] byteArray = Encoding.UTF8.GetBytes(postString);
-
                 string url = "https://accounts.spotify.com/api/token";
-
                 WebRequest request = WebRequest.Create(url);
                 request.Method = "POST";
                 request.Headers.Add("Authorization", "Basic " + _encodedHeader);
@@ -85,9 +81,7 @@ namespace Splatify.Services
                 request.Method = "GET";
                 request.Headers.Add("Authorization", "Bearer " + token);
                 request.ContentType = "application/json; charset=utf-8";
-
                 T type = default(T);
-
                 using (WebResponse response = request.GetResponse())
                 {
                     using (Stream dataStream = response.GetResponseStream())
@@ -95,8 +89,7 @@ namespace Splatify.Services
                         using (StreamReader reader = new StreamReader(dataStream))
                         {
                             string responseFromServer = reader.ReadToEnd();
-                            type = JsonConvert.DeserializeObject<T>(responseFromServer);
-                        
+                            type = JsonConvert.DeserializeObject<T>(responseFromServer);                      
                         }
                     }
                 }
@@ -104,7 +97,7 @@ namespace Splatify.Services
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
@@ -116,26 +109,19 @@ namespace Splatify.Services
                 request.Method = "POST";
                 request.Headers.Add("Authorization", "Bearer " + token);
                 request.ContentType = "application/json; charset=utf-8";
-
                 byte[] encodedData = new ASCIIEncoding().GetBytes(rawData);
                 Stream inputDataStream = request.GetRequestStream();
                 inputDataStream.Write(encodedData, 0, encodedData.Length);
                 inputDataStream.Close();
-
                 T type = default(T);
-
                 using (WebResponse response = request.GetResponse())
                 {
-                    /////
-                    var test = response.ResponseUri;
-
                     using (Stream dataStream = response.GetResponseStream())
                     {
                         using (StreamReader reader = new StreamReader(dataStream))
                         {
                             string responseFromServer = reader.ReadToEnd();
                             type = JsonConvert.DeserializeObject<T>(responseFromServer);
-
                         }
                     }
                 }
@@ -143,10 +129,9 @@ namespace Splatify.Services
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
-
 
         public string ConstructRedirect()
         {
@@ -161,7 +146,6 @@ namespace Splatify.Services
                     redirectString += " ";
                 }
             } 
-
             return redirectString;
         }
     }
